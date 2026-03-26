@@ -15,7 +15,7 @@ export default function Principal({ onLogout }) {
   }
 
   async function carregarNotas() {
-    const resp = await fetch("https://meu_app_notas.onrender.com/notas/", {
+    const resp = await fetch("https://notas-1-p3fu.onrender.com/notas/", {
       headers: { "Authorization": `Bearer ${getToken()}` }
     });
     setNotas(await resp.json());
@@ -23,7 +23,7 @@ export default function Principal({ onLogout }) {
 
   async function salvarNota(nota) {
     if (notaEditando) {
-      await fetch(`https://meu_app_notas.onrender.com/notas/${notaEditando.id}`, {
+      await fetch(`https://notas-1-p3fu.onrender.com/notas/${notaEditando.id}`, {
         method: "PUT",
         headers: {
           "Authorization": `Bearer ${getToken()}`,
@@ -33,7 +33,7 @@ export default function Principal({ onLogout }) {
       });
       setNotaEditando(null);
     } else {
-      await fetch("https://meu_app_notas.onrender.com/notas/", {
+      await fetch("https://notas-1-p3fu.onrender.com/notas/", {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${getToken()}`,
@@ -46,7 +46,7 @@ export default function Principal({ onLogout }) {
   }
 
   async function deletarNota(id) {
-    await fetch(`https://meu_app_notas.onrender.com/notas/${id}`, {
+    await fetch(`https://notas-1-p3fu.onrender.com/notas/${id}`, {
       method: "DELETE",
       headers: { "Authorization": `Bearer ${getToken()}` }
     });
