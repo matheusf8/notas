@@ -24,5 +24,6 @@ app.add_middleware(
 )
 
 
+
 app.include_router(nota_router, prefix="/notas", tags=["notas"])
 app.include_router(auth_router, prefix="/auth", tags=["auth"])  
