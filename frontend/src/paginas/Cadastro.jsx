@@ -7,7 +7,7 @@ export default function Cadastro() {
   const [senha, setSenha] = useState("");
 
   async function cadastrar() {
-    const resp = await fetch("https://notas-u4ox.onrender.com/auth/cadastro", {
+    const resp = await fetch("https://notas-5p4e.onrender.com/auth/cadastro", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({ username: nome, password: senha }),

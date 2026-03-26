@@ -8,7 +8,7 @@ export default function Login({ onLogin }) {
   const navigate = useNavigate();
 
   async function login() {
-    const resp = await fetch("https://notas-u4ox.onrender.com/auth/login", {
+    const resp = await fetch("https://notas-5p4e.onrender.com/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({ username: nome, password: senha }),
