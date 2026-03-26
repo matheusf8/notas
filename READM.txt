@@ -1,0 +1,89 @@
+PROJETO DE ANOTAÇÕES - FASTAPI + REACT
+
+=====================================
+1. BACKEND (FastAPI)
+=====================================
+
+Arquivos principais:
+- main.py → inicializa o servidor FastAPI
+- banco.py → configuração do banco SQLite
+- tabelas.py → tabelas de Usuário e Nota
+- modelo.py → modelos Pydantic
+- auth_rotas.py → rotas de cadastro e login
+- order_rotas.py → rotas CRUD de notas
+
+Como rodar:
+1. Abra o terminal e vá até a pasta backend:
+   cd projeto_anotacao/backend
+
+2. Instale dependências (se ainda não fez):
+   pip install fastapi uvicorn sqlalchemy
+
+3. Rode o servidor:
+   uvicorn main:app --reload
+
+4. O backend estará disponível em:
+   http://localhost:8000
+   http://localhost:8000/docs (Swagger para testar rotas)
+
+=====================================
+2. FRONTEND (React)
+=====================================
+
+Estrutura:
+- paginas/ → telas (Login, Cadastro, Principal)
+- componentes/ → blocos reutilizáveis (FormNota, ListaNotas)
+- estilos/ → CSS global e estilos específicos
+
+Como rodar:
+1. Abra outro terminal e vá até a pasta frontend:
+   cd projeto_anotacao/frontend
+
+2. Instale dependências:
+   npm install
+   npm install react-router-dom
+
+3. Rode o servidor React:
+   npm start
+
+4. O frontend estará disponível em:
+   http://localhost:3000
+
+=====================================
+3. FLUXO DO USUÁRIO
+=====================================
+
+- Tela de Login:
+  Usuário informa nome e senha.
+  Se não tiver conta, pode ir para Cadastro.
+
+- Tela de Cadastro:
+  Usuário cria conta com nome e senha.
+  Depois volta para Login.
+
+- Tela Principal:
+  Usuário cria, lista e deleta notas.
+  Botão "Encerrar Sessão" leva de volta ao Login.
+
+=====================================
+4. OBSERVAÇÕES
+=====================================
+
+- O banco de dados é SQLite (arquivo notas.db).
+- O backend precisa estar rodando em http://localhost:8000
+- O frontend consome a API do backend via fetch.
+- CORS já está habilitado no backend para permitir acesso do React.
+- Estilos estão separados na pasta estilos para dar identidade visual.
+
+=====================================
+5. COMANDOS RÁPIDOS
+=====================================
+
+Backend:
+  cd projeto_anotacao/backend
+  uvicorn main:app --reload
+
+Frontend:
+  cd projeto_anotacao/frontend
+  npm install
+  npm start
