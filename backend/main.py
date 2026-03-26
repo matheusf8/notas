@@ -14,7 +14,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # porta do Vite
+    allow_origins=["https://meu_app_notas.vercel.app"],  # porta do Vite
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
