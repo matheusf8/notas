@@ -23,7 +23,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-
 app.include_router(nota_router, prefix="/notas", tags=["notas"])
-app.include_router(auth_router, prefix="/auth", tags=["auth"])  
+app.include_router(auth_router, prefix="/auth", tags=["auth"])

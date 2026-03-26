@@ -15,11 +15,10 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 def hash_senha(senha: str):
-    return pwd_context.hash(senha[:72])
+    return pwd_context.hash(senha[:72])  # limita a 72 bytes
 
 def verificar_senha(senha: str, hash: str):
-    return pwd_context.verify(senha[:72], hash)
-
+    return pwd_context.verify(senha[:72], hash)  # também limita na verificação
 
 def criar_token(dados: dict, expira_em: int = ACCESS_TOKEN_EXPIRE_MINUTES):
     to_encode = dados.copy()
