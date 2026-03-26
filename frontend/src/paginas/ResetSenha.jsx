@@ -7,7 +7,7 @@ export default function ResetSenha() {
   const [novaSenha, setNovaSenha] = useState("");
 
   async function resetar() {
-    const resp = await fetch("https://notas-1-p3fu.onrender.com/auth/resetar_senha", {
+    const resp = await fetch("https://notas-u4ox.onrender.com/auth/resetar_senha", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({ username, nova_senha: novaSenha }),
