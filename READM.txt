@@ -1,89 +1,119 @@
-PROJETO DE ANOTAÇÕES - FASTAPI + REACT
+Projeto de Anotações (Backend + Frontend)
 
-=====================================
-1. BACKEND (FastAPI)
-=====================================
+Este repositório contém um sistema completo de anotações com autenticação JWT, desenvolvido em FastAPI (backend) e React/Vite (frontend).
 
-Arquivos principais:
-- main.py → inicializa o servidor FastAPI
-- banco.py → configuração do banco SQLite
-- tabelas.py → tabelas de Usuário e Nota
-- modelo.py → modelos Pydantic
-- auth_rotas.py → rotas de cadastro e login
-- order_rotas.py → rotas CRUD de notas
+🚀 Funcionalidades
 
-Como rodar:
-1. Abra o terminal e vá até a pasta backend:
-   cd projeto_anotacao/backend
+Cadastro e login de usuários.
 
-2. Instale dependências (se ainda não fez):
-   pip install fastapi uvicorn sqlalchemy
+Autenticação via JWT.
 
-3. Rode o servidor:
-   uvicorn main:app --reload
+CRUD de notas (criar, listar, atualizar, deletar).
 
-4. O backend estará disponível em:
-   http://localhost:8000
-   http://localhost:8000/docs (Swagger para testar rotas)
+Proteção de rotas: apenas usuários logados acessam notas.
 
-=====================================
-2. FRONTEND (React)
-=====================================
+Integração entre backend e frontend.
 
-Estrutura:
-- paginas/ → telas (Login, Cadastro, Principal)
-- componentes/ → blocos reutilizáveis (FormNota, ListaNotas)
-- estilos/ → CSS global e estilos específicos
+📂 Estrutura
 
-Como rodar:
-1. Abra outro terminal e vá até a pasta frontend:
-   cd projeto_anotacao/frontend
+projeto_anotacao/
+ ├─ backend/
+ │   ├─ banco.py
+ │   ├─ tabelas.py
+ │   ├─ modelo.py
+ │   ├─ seguranca.py
+ │   ├─ auth_rotas.py
+ │   ├─ notas_rotas.py
+ │   ├─ main.py
+ │   └─ requirements.txt
+ │
+ └─ frontend/
+     ├─ src/
+     │   ├─ pages/
+     │   │   ├─ Login.jsx
+     │   │   └─ Principal.jsx
+     │   ├─ App.jsx
+     │   └─ main.jsx
+     ├─ package.json
+     └─ vite.config.js
 
-2. Instale dependências:
-   npm install
-   npm install react-router-dom
+⚙️ Backend
 
-3. Rode o servidor React:
-   npm start
+Instalação
 
-4. O frontend estará disponível em:
-   http://localhost:3000
+cd backend
+python -m venv venv
+venv\Scripts\activate   # Windows
+source venv/bin/activate # Linux/Mac
+pip install -r requirements.txt
 
-=====================================
-3. FLUXO DO USUÁRIO
-=====================================
+Executando
 
-- Tela de Login:
-  Usuário informa nome e senha.
-  Se não tiver conta, pode ir para Cadastro.
+uvicorn main:app --reload
 
-- Tela de Cadastro:
-  Usuário cria conta com nome e senha.
-  Depois volta para Login.
+Endpoints
 
-- Tela Principal:
-  Usuário cria, lista e deleta notas.
-  Botão "Encerrar Sessão" leva de volta ao Login.
+Swagger UI: http://127.0.0.1:8000/docs
 
-=====================================
-4. OBSERVAÇÕES
-=====================================
+ReDoc: http://127.0.0.1:8000/redoc
 
-- O banco de dados é SQLite (arquivo notas.db).
-- O backend precisa estar rodando em http://localhost:8000
-- O frontend consome a API do backend via fetch.
-- CORS já está habilitado no backend para permitir acesso do React.
-- Estilos estão separados na pasta estilos para dar identidade visual.
+Fluxo de Autenticação
 
-=====================================
-5. COMANDOS RÁPIDOS
-=====================================
+Cadastro: POST /auth/cadastro
 
-Backend:
-  cd projeto_anotacao/backend
-  uvicorn main:app --reload
+Login: POST /auth/login → retorna access_token
 
-Frontend:
-  cd projeto_anotacao/frontend
-  npm install
-  npm start
+Authorize no Swagger: cole apenas o token cru (eyJhbGci...). O Swagger monta automaticamente Authorization: Bearer ....
+
+Rotas de notas: POST /notas/, GET /notas/, PUT /notas/{id}, DELETE /notas/{id}.
+
+⚙️ Frontend
+
+Instalação
+
+cd frontend
+npm install
+
+Executando
+
+npm run dev
+
+Fluxo no Frontend
+
+Login.jsx: envia usuário/senha para /auth/login, salva access_token no localStorage.
+
+Principal.jsx: todas as requisições usam:
+
+const token = localStorage.getItem("token");
+fetch("http://localhost:8000/notas/", {
+  headers: {
+    "Authorization": `Bearer ${token}`,
+    "Content-Type": "application/json"
+  }
+});
+
+🛡️ Segurança
+
+Senhas com hash bcrypt.
+
+Tokens JWT expiram em 30 minutos.
+
+Rotas de notas protegidas.
+
+📑 .gitignore
+
+usa para evitar arquivos desnecessarios
+
+venv/
+__pycache__/
+*.pyc
+*.db
+.env
+node_modules/
+dist/
+
+✅ Conclusão
+
+Este projeto integra FastAPI e React para um sistema seguro de anotações. O backend fornece autenticação JWT e rotas protegidas, enquanto o frontend consome essas rotas e gerencia o token automaticamente.
+
+👨‍💻 Autor: Matheus 📅 Data: Março/2026
