@@ -18,7 +18,8 @@ def hash_senha(senha: str):
     return pwd_context.hash(senha[:72])
 
 def verificar_senha(senha: str, hash: str):
-    return pwd_context.verify(senha, hash)
+    return pwd_context.verify(senha[:72], hash)
+
 
 def criar_token(dados: dict, expira_em: int = ACCESS_TOKEN_EXPIRE_MINUTES):
     to_encode = dados.copy()
